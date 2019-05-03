@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Person>
+@{
+    ViewData["Title"] = "People";
+}
+
+<h2 id="People">People of list</h2>
+
+<a class="btn btn-primary" asp-controller="Person" asp-action="CreatePerson">Create new person</a>
+
+<table class="w3-table-all">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">City</th>
+            <th scope="col">Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Age)</td>
+                <td>@Html.DisplayFor(modelItem => item.City.Name)</td>
+                <td>
+                    <a class="btn btn-primary" asp-controller="Person" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a class="btn btn-danger" asp-controller="Person" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    }
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

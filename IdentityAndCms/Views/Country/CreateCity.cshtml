@@ -1,0 +1,25 @@
+﻿@model CityVM
+@{
+    ViewData["Title"] = "Cities";
+}
+
+<h1 id="h11">Create New City</h1>
+<div>
+    <div>
+        <form asp-controller="Country" asp-action="CreateCity">
+            <div class="row form-border">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            </div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label" style="color:white"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <a class="btn btn-danger" asp-action="Details" asp-route-id="@Model.CountryId">Back</a>
+                    <input class="btn btn-sm btn-success" type="submit" value="Create" />
+                </div>
+                <input asp-for="CountryId" type="hidden" />
+        </form>
+    </div>
+</div>

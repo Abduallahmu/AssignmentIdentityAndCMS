@@ -1,0 +1,33 @@
+﻿@model PersonVM
+@{
+    ViewData["Title"] = "Cities";
+}
+
+<h1>Create Person</h1>
+
+<br />
+<hr />
+<div class="w3-table-all w3-card-4">
+    <div class="col-md-4">
+        <form asp-controller="City" asp-action="CreatePerson">
+            <div class="row form-border">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Age" class="control-label"></label>
+                    <input asp-for="Age" class="form-control" />
+                    <span asp-validation-for="Age" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <a class="btn btn-danger" asp-controller="City" asp-action="Details" asp-route-id="@Model.CityId">Back</a>
+                    <input class="btn btn-sm btn-success" type="submit" value="Create" />
+                </div>
+            </div>
+            <input type="hidden" value="@Model.CityId" name="cityId" />
+        </form>
+    </div>
+</div>

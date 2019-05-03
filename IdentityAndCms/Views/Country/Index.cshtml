@@ -1,0 +1,34 @@
+﻿@model List<Country>
+@{
+    ViewData["Title"] = "Country";
+}
+
+<h2 id="h22">Countries</h2>
+
+<a class="btn btn-primary" asp-controller="Country" asp-action="CreateCountry">Create new Country</a>
+
+<table class="w3-table-all">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                <td>
+                    <a class="btn btn-primary" asp-controller="Country" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                    <a class="btn btn-info" asp-controller="Country" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    <a class="btn btn-danger" asp-controller="Country" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+

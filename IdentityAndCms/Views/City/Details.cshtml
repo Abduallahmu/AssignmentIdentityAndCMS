@@ -1,0 +1,53 @@
+﻿@model City
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1 id="h11">Details</h1>
+<hr />
+
+<div>
+    <dl class="w3-table-all w3-card-4">
+        <dt class="col-sm-2">
+            City name
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+
+    <hr />
+    <a class="btn btn-primary" asp-controller="City" asp-action="CreatePer" asp-route-cityId="@Model.Id">Create person</a>
+
+    <table class="w3-table-all w3-card-4">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Age</th>
+                <th scope="col">Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.People.Count != 0 || Model.People != null)
+            {
+                @foreach (var item in Model.People)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Age)</td>
+                        <td>
+                            <a class="btn btn-primary" asp-controller="City" asp-action="EditPerson" asp-route-id="@item.Id">Edit</a>
+                            <a class="btn btn-danger" asp-controller="City" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <a class="btn btn-danger" asp-controller="Country" asp-action="Index">Back to Countries</a>
+    <a class="btn btn-danger" asp-controller="Country" asp-action="Details" asp-route-id="@Model.Country.Id">Back to Cities</a>
+    <hr />
+</div>
